@@ -108,6 +108,8 @@ import { computed, defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'Create',
+  components: {
+  },
   setup() {
     const state = reactive({
       title: '',

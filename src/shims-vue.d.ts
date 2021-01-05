@@ -4,6 +4,8 @@ declare module '*.vue' {
   export default component
 }
 
+declare module 'vue2-datepicker'
+
 interface Window {
   dragula: any
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="profil">
+  <div class="profil slide-right-leave-active" :class="{'slide-left-leave-active': isLeave}">
     <div class="page-header profil-header">
       <h1 class="page-title flex between container">
         <a href="#" @click="$router.back()">
@@ -121,7 +121,19 @@
   import { defineComponent } from 'vue'
 
   export default defineComponent({
-    name: 'Profil'
+    name: 'Profil',
+    // beforeRouteLeave(to, from, next) {
+    //   this.isLeave = true
+    //   const timer = setTimeout(() => {
+    //     next()
+    //     clearTimeout(timer)
+    //   }, 800)
+    // },
+    data() {
+      return {
+        isLeave: false
+      }
+    }
   })
 </script>
 
