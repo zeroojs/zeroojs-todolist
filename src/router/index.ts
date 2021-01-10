@@ -5,11 +5,17 @@ import create from '../pages/create.vue'
 import details from '../pages/details.vue'
 import progress from '../pages/progress.vue'
 import profil from '../pages/profil.vue'
+import Trans from '../components/Trans.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: boards
+    // redirect: '/trans'
+  },
+  {
+    path: '/trans',
+    component: Trans
   },
   {
     path: '/create',

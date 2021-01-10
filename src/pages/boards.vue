@@ -1,6 +1,6 @@
 <template>
-  <!-- <transition name="slide-right"> -->
-    <div class="slide-right-leave-active">
+  <transition name="slide-fade">
+    <div class="child-view">
       <div class="boards-header">
         <h1 class="page-title flex between container">
           <router-link to="/profil" class="profil-btn">
@@ -75,7 +75,7 @@
         </z-section>
       </div>
     </div>
-  <!-- </transition> -->
+  </transition>
 </template>
 
 <script lang="ts">
@@ -86,11 +86,23 @@ import ZSection from '../components/layout/ZSection.vue'
 
 export default {
   name: 'Boards',
+  beforeRouteEnter() {
+    console.log(this)
+  },
+  beforeRouteLeave() {
+    this.isLeave = true
+  },
   components: {
     Search,
     TaskRow,
     ZSection,
     BoardCard
+  },
+  data() {
+    return {
+      isEnter: false,
+      isLeave: false
+    }
   }
 }
 </script>
