@@ -23,7 +23,7 @@
         </router-link>
       </div>
       <div class="boards-body container">
-        <ZDate />
+        <ZDate v-model="date" />
         <ZSection title="我的任务">
           <template #append>
             <div class="date-selector">
@@ -87,12 +87,6 @@ import ZSection from '../components/layout/ZSection.vue'
 
 export default {
   name: 'Boards',
-  beforeRouteEnter() {
-    console.log(this)
-  },
-  beforeRouteLeave() {
-    this.isLeave = true
-  },
   components: {
     Search,
     TaskRow,
@@ -102,7 +96,8 @@ export default {
   data() {
     return {
       isEnter: false,
-      isLeave: false
+      isLeave: false,
+      date: new Date()
     }
   }
 }
