@@ -17,42 +17,18 @@
         v-model="title"
         label="标题"
         placeholder="请输入标题"/>
-      <z-input label="创建时间" placeholder="2020/12/31"/>
+      <z-input label="创建时间" readonly v-model="createDate"/>
     </div>
     <div class="create-card-body">
       <!-- 时间段选择 -->
       <div class="date-picker container flex center">
         <div class="date-picker-start">
           <h4 class="date-picker-title">开始任务时间</h4>
-          <div class="date-picker-body flex">
-            <div class="date-picker-icon">
-              <svg width="15" height="15" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="2.80005" width="16.2" height="16.2" rx="2" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12.7 1V4.6" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M5.5 1V4.6" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M1 8.19995H17.2" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="date-picker-text">
-              2020/12/31
-            </div>
-          </div>
+          <ZDate v-model="startDate"/>
         </div>
         <div class="date-picker-end">
           <h4 class="date-picker-title">结束任务时间</h4>
-          <div class="date-picker-body flex">
-            <div class="date-picker-icon">
-              <svg width="15" height="15" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="2.80005" width="16.2" height="16.2" rx="2" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12.7 1V4.6" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M5.5 1V4.6" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M1 8.19995H17.2" stroke="#DDB90E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="date-picker-text">
-              2021/01/03
-            </div>
-          </div>
+          <ZDate v-model="endDate"/>
         </div>
       </div>
       <!-- 任务描述 -->
@@ -89,7 +65,7 @@
           <div class="members-item"></div>
           <div class="members-item"></div>
           <div class="members-item"></div>
-          <div class="members-item add">
+          <div @click="showDialog()" class="members-item add">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3684 8.36842H9.63158V1.63158C9.63158 1.28277 9.34881 1 9 1C8.65119 1 8.36842 1.28277 8.36842 1.63158V8.36842H1.63158C1.28277 8.36842 1 8.65119 1 9C1 9.34881 1.28277 9.63158 1.63158 9.63158H8.36842V16.3684C8.36842 16.7172 8.65119 17 9 17C9.34881 17 9.63158 16.7172 9.63158 16.3684V9.63158H16.3684C16.7172 9.63158 17 9.34881 17 9C17 8.65119 16.7172 8.36842 16.3684 8.36842Z" fill="#4404AC" stroke="#4404AC"/>
             </svg>
@@ -100,29 +76,36 @@
         <div class="btn">立即创建一个任务</div>
       </div>
     </div>
+    <z-dialog v-model="dialog"/>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'Create',
   components: {
   },
   setup() {
+    const dialog = ref(false)
     const state = reactive({
       title: '',
       createDate: new Date().toLocaleDateString(),
-      startDate: '',
-      endDate: '',
+      startDate: new Date(),
+      endDate: new Date(),
       desc: '',
       category: [],
       members: []
     })
 
+    const showDialog = () => {
+      dialog.value = true
+    }
     return {
-      ...toRefs(state)
+      dialog,
+      ...toRefs(state),
+      showDialog
     }
   }
 })

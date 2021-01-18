@@ -4,16 +4,17 @@
       <slot name="label">{{ label }}</slot>
     </label>
     <input 
-      v-model="modelValue" 
+      v-model="inputVal" 
       class="z-input--inner" 
       type="text"
       :placeholder="placeholder"
+      v-bind="$attrs"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 
 export default defineComponent({
   name: 'ZInput',
@@ -22,9 +23,12 @@ export default defineComponent({
     modelValue: String,
     placeholder: String
   },
-  setup() {
-    const inputVal = ref('')
-
+  emits: ['update:modelValue'],
+  setup(props, ctx) {
+    const inputVal = ref(props.modelValue)
+    watch(() => inputVal.value, (val) => {
+      ctx.emit('update:modelValue', val)
+    })
     return {
       inputVal
     }

@@ -28,6 +28,9 @@
 </script>
 
 <style lang="less" scoped>
+.task-row {
+  cursor: pointer;
+}
 .task-row-icon {
   width: 44px;
   height: 44px;

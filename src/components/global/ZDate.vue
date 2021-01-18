@@ -48,7 +48,6 @@ export default defineComponent({
         mark: props.mark,
         value: props.modelValue,
         done(val) {
-          console.log(val)
           ctx.emit('update:modelValue', val)
         }
       })
