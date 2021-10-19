@@ -17,6 +17,10 @@
       >
         Yellow（点我）
       </div>
+      <div v-if="greenShow" @click="toggle" class="green-box">Green</div>
+    </transition>
+    <transition name="slide-fade">
+      <div v-if="!greenShow" @click="toggle" class="yellow-box">Yellow</div>
     </transition>
   </div>
 </template>
@@ -28,12 +32,16 @@ export default defineComponent({
   name: 'Trans',
   data() {
     return {
-      isNext: true
+      isNext: true,
+      greenShow: true,
+      yellowShow: true
     }
   },
   methods: {
     toggle() {
       this.isNext = !this.isNext
+      this.greenShow = !this.greenShow
+      this.yellowShow = !this.yellowShow
     }
   }
 })
@@ -59,11 +67,12 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   font-size: 30px;
+  /* opacity: 0; */
+  position: absolute;
 }
 .yellow-box {
   background-color: yellow;
 }
-
 /* 离开 */
 .slide-fade-leave-to {
   opacity: 0;

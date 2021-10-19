@@ -47,3 +47,8 @@ https://cubic-bezier.com/#.17,.67,.83,.67
 ## 其他链接：
 案例站点：http://todo.zeroojs.com  
 调试页面：http://todo.zeroojs.com/example/a
+
+# 拖拽插件
+```bash
+yarn add dragula
+```

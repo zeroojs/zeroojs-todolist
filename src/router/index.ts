@@ -29,6 +29,7 @@ const routes: RouteRecordRaw[] = [
         component: exampleB
       }
     ]
+    // redirect: '/trans'
   },
   {
     path: '/trans',
